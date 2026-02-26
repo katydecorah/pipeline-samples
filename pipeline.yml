@@ -8,4 +8,5 @@ stages:
   - job: job
     steps:
     - checkout: none
-    - powershell: echo "Hello World!"
+    - bash: echo $(Build.Repository.Provider)
+    - bash: echo $(System.PullRequest.IsFork)
