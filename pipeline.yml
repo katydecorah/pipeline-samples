@@ -1,37 +1,11 @@
 pr:
 - main
 
-resources:
-  repositories:
-  - repository: 1esPipelines
-    type: git
-    name: Domino/1ESPipelines
-    ref: ndhakal/scriptChangeTemplate
-    #ref: refs/tags/release
 
-extends:
-  template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
-  parameters:
-    settings:
-        skipBuildTagsForGitHubPullRequests: true
-    pool:
-      name: $(PoolName)
-      image: $(PoolImage)
-      os: windows
-
-    sdl:
-      binskim:
-        enabled: false
-        justificationForDisabling: 'Binskim is consistently crashing for my repo blocking our production pipeline'
-      codeql:  # Use this to disable CodeQL
-        compiled:
-          enabled: false
-          justificationForDisabling: 'CodeQL is taking nearly 4 hours resulting in timeouts in our production pipelines'
-
-    stages:
-    - stage: Stage
-      jobs:
-      - job: job
-        steps:
-        - checkout: none
-        - powershell: echo "Hello World from host"
+stages:
+- stage: Stage
+  jobs:
+  - job: job
+    steps:
+    - checkout: none
+    - powershell: echo "Hello World from host"
